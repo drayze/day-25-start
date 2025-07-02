@@ -1,4 +1,5 @@
 import csv
+import os
 
 def split_csv(input_file, output_file1, output_file2, split_criteria):
     """
@@ -41,7 +42,6 @@ def split_csv(input_file, output_file1, output_file2, split_criteria):
         csv_writer.writerow(headers)
         csv_writer.writerows(data_for_file2)
 
-# Example usage:
 def example_split_criteria(row):
     """
     Example criteria: Split based on whether a value in the first column is greater than 50
@@ -49,16 +49,43 @@ def example_split_criteria(row):
     """
     return float(row[0]) > 50
 
+def get_input_file_path():
+    """
+    Prompt user for file name and construct full path
+    """
+    base_path = "path/to/your/directory"  # Set your default base path here
+    
+    while True:
+        print("\nEnter the file name or partial path:")
+        user_input = input("> ").strip()
+        
+        # Construct full path
+        full_path = os.path.join(base_path, user_input)
+        
+        # Check if file exists
+        if os.path.isfile(full_path):
+            return full_path
+        else:
+            print(f"File not found: {full_path}")
+            retry = input("Would you like to try again? (y/n): ").lower()
+            if retry != 'y':
+                raise FileNotFoundError("Valid input file not provided")
+
 # Main execution
 if __name__ == "__main__":
     try:
-        # Replace these with your actual file paths
-        input_csv = "input.csv"
-        output_csv1 = "output1.csv"
-        output_csv2 = "output2.csv"
+        # Get input file path from user
+        input_csv = get_input_file_path()
+        
+        # Generate output file names based on input file
+        base_name = os.path.splitext(os.path.basename(input_csv))[0]
+        output_csv1 = f"{base_name}_output1.csv"
+        output_csv2 = f"{base_name}_output2.csv"
         
         split_csv(input_csv, output_csv1, output_csv2, example_split_criteria)
-        print("CSV files have been successfully split!")
+        print("\nCSV files have been successfully split!")
+        print(f"Created: {output_csv1}")
+        print(f"Created: {output_csv2}")
         
     except Exception as e:
-        print(f"An error occurred: {str(e)}")
+        print(f"\nAn error occurred: {str(e)}")
