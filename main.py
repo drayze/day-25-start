@@ -1,38 +1,31 @@
-import csv
+import pandas as pd
 import os
 
 def split_csv(input_file, output_file1, output_file2):
     """
-    Parse a CSV file 
+    Parse a CSV file and split it into two separate files using pandas
     
     Parameters:
     input_file (str): Path to input CSV file
-
+    output_file1 (str): Path to first output CSV file
+    output_file2 (str): Path to second output CSV file
     """
     
-    # Lists to store rows for each output file
-    data_for_file1 = []
-    data_for_file2 = []
+    # Read the CSV file into a pandas DataFrame
+    df = pd.read_csv(input_file)
     
-    # Read the input CSV file
-    with open(input_file, 'r', newline='') as csvfile:
-        csv_reader = csv.reader(csvfile)
-        
-        # Get headers
-        headers = next(csv_reader)
-
+    # Calculate the middle index
+    mid_point = len(df) // 2
     
-    # Write to first output file
-    with open(output_file1, 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(headers)
-        csv_writer.writerows(data_for_file1)
+    # Split the DataFrame into two parts
+    df1 = df[:mid_point]
+    df2 = df[mid_point:]
     
-    # Write to second output file
-    with open(output_file2, 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(headers)
-        csv_writer.writerows(data_for_file2)
+    # Write to output files
+    df1.to_csv(output_file1, index=False)
+    df2.to_csv(output_file2, index=False)
+    
+    return len(df1), len(df2)  # Return the number of rows in each file
 
 
 def get_input_file_path():
