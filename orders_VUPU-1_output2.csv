@@ -1,0 +1,1 @@
+﻿OrderId,Warehouse,Status,PickTaskId,FastTrack,IsRemoval,IsGift,GiftWrap,GiftMessage,IsHazmat,IsSioc,IsSerialScanRequired,RequestedShipMethod,AssignedShipMethod,AssignedCPT,TrackingId,AmazonBarcode,Fnsku,UPC,Title,RequestedQuantity,ItemLotNumber,SerialNumber,OrderReceivedDate,ExpectedShipDate,OrderAcceptedDate,OrderShippedDate

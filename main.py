@@ -1,15 +1,13 @@
 import csv
 import os
 
-def split_csv(input_file, output_file1, output_file2, split_criteria):
+def split_csv(input_file, output_file1, output_file2):
     """
-    Parse a CSV file and split it into two separate files based on given criteria
+    Parse a CSV file 
     
     Parameters:
     input_file (str): Path to input CSV file
-    output_file1 (str): Path to first output CSV file
-    output_file2 (str): Path to second output CSV file
-    split_criteria (function): Function that determines which output file a row goes to
+
     """
     
     # Lists to store rows for each output file
