@@ -73,7 +73,7 @@ if __name__ == "__main__":
         output_csv1 = f"{base_name}_output1.csv"
         output_csv2 = f"{base_name}_output2.csv"
         
-        split_csv(input_csv, output_csv1, output_csv2, example_split_criteria)
+        split_csv(input_csv, output_csv1, output_csv2)
         print("\nCSV files have been successfully split!")
         print(f"Created: {output_csv1}")
         print(f"Created: {output_csv2}")
