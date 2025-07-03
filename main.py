@@ -50,16 +50,19 @@ def example_split_criteria(row):
     return float(row[0]) > 50
 
 def get_input_file_path():
-    """
-    Prompt user for file name and construct full path
-    """
-    base_path = "path/to/your/directory"  # Set your default base path here
+    base_path = os.getcwd()
     
+    # Prompt user for file name and construct full path
+    print("\nEnter the file name or partial path (must be a .csv file):")
     while True:
-        print("\nEnter the file name or partial path:")
         user_input = input("> ").strip()
-        
-        # Construct full path
+
+        # Check if the input ends with .csv
+        if not user_input.endswith('.csv'):
+            print("File must have .csv extension")
+            continue
+            
+        # Construct full path    
         full_path = os.path.join(base_path, user_input)
         
         # Check if file exists
