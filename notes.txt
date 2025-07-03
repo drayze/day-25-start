@@ -1,1 +1,3 @@
-adding this for notes
+This program will import the csv file you name and parse the columns needed for the output.
+Then create a csv file with the extracted data (for internal use), and then parse that file to create another
+csv file (used as a receipt) 
