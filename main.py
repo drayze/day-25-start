@@ -22,13 +22,7 @@ def split_csv(input_file, output_file1, output_file2, split_criteria):
         
         # Get headers
         headers = next(csv_reader)
-        
-        # Process each row
-        for row in csv_reader:
-            if split_criteria(row):
-                data_for_file1.append(row)
-            else:
-                data_for_file2.append(row)
+
     
     # Write to first output file
     with open(output_file1, 'w', newline='') as csvfile:
@@ -41,7 +35,6 @@ def split_csv(input_file, output_file1, output_file2, split_criteria):
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(headers)
         csv_writer.writerows(data_for_file2)
-
 
 
 def get_input_file_path():
