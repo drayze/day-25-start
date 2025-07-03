@@ -42,12 +42,7 @@ def split_csv(input_file, output_file1, output_file2, split_criteria):
         csv_writer.writerow(headers)
         csv_writer.writerows(data_for_file2)
 
-def example_split_criteria(row):
-    """
-    Example criteria: Split based on whether a value in the first column is greater than 50
-    Modify this function according to your needs
-    """
-    return float(row[0]) > 50
+
 
 def get_input_file_path():
     base_path = os.getcwd()
